@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#e1f1e8">
+<title>My Rail Passport</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' rx='11' fill='%230f6b4f'/%3E%3Ccircle cx='24' cy='24' r='17.5' fill='none' stroke='%23f2d98a' stroke-width='2'/%3E%3Ccircle cx='24' cy='19.5' r='3.8' fill='%23e8444f'/%3E%3Cpath d='M16 36l6.2-10M32 36l-6.2-10M20.2 29.5h7.6M18.2 33h11.6' stroke='%23fff' stroke-width='2' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=DM+Serif+Display&display=swap">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);
+  --bg:#f1f5f2;--head:#e1f1e8;--card:#fff;--ink:#14231c;--muted:#66756d;--line:#e1e9e3;--field:#eff3f0;--brand:#0f6b4f;--btn:#3f9d7b;--btnink:#fff;--selbg:#dff1e7;--selline:#44a583;--selink:#0b5c43;--gold:#c9a24a;--red:#d63a4a;--glass:rgba(255,255,255,.94);--cream:#f5f1ea;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0a1511;--head:#10241b;--card:#111f19;--ink:#e8f2ec;--muted:#8da398;--line:#223629;--field:#16271f;--brand:#3fbf94;--btn:#2f8e6c;--selbg:#143a2b;--selline:#3a9a77;--selink:#8be0bf;--glass:rgba(17,31,25,.94);--cream:#1a2a22;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0a1511;--head:#10241b;--card:#111f19;--ink:#e8f2ec;--muted:#8da398;--line:#223629;--field:#16271f;--brand:#3fbf94;--btn:#2f8e6c;--selbg:#143a2b;--selline:#3a9a77;--selink:#8be0bf;--glass:rgba(17,31,25,.94);--cream:#1a2a22;color-scheme:dark}
+html{height:100%}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Anek Bangla","Hind Siliguri","Noto Sans Bengali","Bangla Sangam MN",system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+button,input{font:inherit;color:inherit}
+button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--btn);outline-offset:2px}
+svg.i{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.in{max-width:480px;margin:0 auto}
+.top{background:linear-gradient(180deg,var(--head),var(--bg));padding:12px 18px 6px}
+.hrow{display:flex;align-items:center;gap:12px}
+.lg{width:42px;height:42px;flex:none}
+.ht{flex:1;min-width:0}
+.ht b{display:block;font-family:"DM Serif Display",Georgia,serif;font-weight:400;font-size:24px;line-height:1.1}
+.ht span{font-size:13px;color:var(--muted)}
+.ring{position:relative;width:46px;height:46px;flex:none}
+.ring svg{width:46px;height:46px;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:4}
+.ring .a{stroke:var(--line)}.ring .b{stroke:var(--btn);stroke-linecap:round;transition:stroke-dashoffset .4s}
+.ring em{position:absolute;inset:0;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:12.5px}
+.wrap{padding:6px 16px 130px}
+h1{margin:14px 0 12px;text-align:center;font-size:34px;line-height:1.25;font-weight:800;letter-spacing:-.3px}
+h1 em{font-style:normal;background:linear-gradient(90deg,#0f7a5a,#d63a4a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pill{display:flex;width:max-content;max-width:100%;margin:0 auto 12px;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 18px;font-weight:600;font-size:14.5px}
+.pill:before{content:"";width:10px;height:10px;border-radius:50%;background:#2fd08e}
+.lead{text-align:center;color:var(--muted);margin:0 6px 16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.st3{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:12px 6px 10px;text-align:center}
+.st3 svg{color:var(--btn);margin-bottom:2px}
+.st3 b{display:block;font-size:28px;line-height:1.15;font-weight:800}
+.st3 span{font-size:13.5px;color:var(--muted)}
+.rankbar{display:flex;align-items:center;gap:12px;background:var(--selbg);color:var(--selink);border-radius:20px;padding:12px 16px;margin-bottom:14px;font-weight:700}
+.rankbar svg{flex:none}
+.rankbar small{display:block;font-weight:500;opacity:.85}
+#pv{display:block;width:100%;height:auto;border-radius:22px;border:1px solid var(--line);background:var(--cream);aspect-ratio:4/5;-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto;box-shadow:0 10px 30px rgba(15,60,40,.12)}
+.big{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:16px;margin-top:14px;font-size:17.5px;font-weight:700;background:var(--btn);color:var(--btnink)}
+.two{display:flex;gap:10px;margin-top:10px}
+.two button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:13px 8px;font-weight:600}
+.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:18px 16px;margin-bottom:16px}
+.ch{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.ch .ic{width:38px;height:38px;border-radius:12px;background:var(--selbg);color:var(--brand);display:grid;place-items:center;flex:none}
+.ch h2{margin:0;font-size:20px;font-weight:700;flex:1;line-height:1.3}
+.cnt{background:var(--selbg);color:var(--brand);font-weight:700;border-radius:999px;padding:4px 13px;font-size:14.5px}
+.hint{color:var(--muted);font-size:14.5px;margin:0 0 12px}
+.sb{position:relative;margin-bottom:10px}
+.sb svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.fld{width:100%;border:1.5px solid transparent;background:var(--field);border-radius:18px;padding:13px 16px;font-size:16.5px}
+.sb .fld{padding-left:46px}
+.fld::placeholder{color:var(--muted)}
+.fld:focus{border-color:var(--selline);outline:0}
+.lnk{background:none;border:0;padding:6px 0;text-decoration:underline;text-underline-offset:4px;font-weight:500;color:var(--muted)}
+.fold{display:flex;align-items:center;justify-content:space-between;width:100%;background:var(--field);border:0;border-radius:18px;padding:13px 16px;font-weight:700;margin:4px 0 8px}
+.fold svg{transition:transform .2s}.fold[aria-expanded="true"] svg{transform:rotate(90deg)}
+.rts{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.rt{display:flex;justify-content:space-between;align-items:center;gap:8px;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:18px;padding:12px 16px;font-weight:600}
+.rt small{font-weight:500;color:var(--muted);font-size:14px}
+.rt[aria-pressed="true"]{background:var(--selbg);border-color:var(--selline);color:var(--selink)}
+.rt[aria-pressed="true"] small{color:var(--selink)}
+.dv{border-top:1px solid var(--line)}
+.dh{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.dt{display:flex;align-items:center;gap:10px;flex:1;min-width:0;background:none;border:0;padding:15px 0;text-align:left}
+.dt svg{transition:transform .2s;color:var(--muted)}
+.dt[aria-expanded="true"] svg{transform:rotate(90deg)}
+.dt b{font-size:18px;font-weight:700}
+.dt span{color:var(--muted);font-weight:600;font-size:14.5px}
+.sa{background:none;border:0;color:var(--brand);font-weight:700;text-decoration:underline;text-underline-offset:4px;padding:8px 0;flex:none}
+.chs{display:flex;flex-wrap:wrap;gap:8px;padding:2px 0 16px}
+.cp{border:1.5px solid var(--line);background:var(--card);border-radius:18px;padding:9px 15px;font-size:16px;font-weight:500}
+.cp[aria-pressed="true"]{background:var(--selbg);border-color:var(--selline);color:var(--selink);font-weight:700}
+.cp[aria-pressed="true"]:before{content:"✓ "}
+.cp.pop{animation:stp .38s cubic-bezier(.2,1.6,.4,1)}
+@keyframes stp{0%{transform:scale(1.35) rotate(-6deg);opacity:.4}100%{transform:none;opacity:1}}
+.msg{color:var(--muted);margin:12px 0}
+.add{display:flex;gap:8px}
+.add .fld{flex:1;min-width:0;padding:12px 14px}
+.add button{border:0;border-radius:18px;background:var(--btn);color:#fff;font-weight:700;padding:0 20px}
+.sec{font-weight:700;font-size:15.5px;margin:18px 0 8px;color:var(--muted)}
+.fm{display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;border:1.5px solid var(--line);background:var(--card);border-radius:20px;padding:12px 14px;margin-bottom:8px}
+.fm .tk{width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);flex:none;display:grid;place-items:center;font-size:14px;color:transparent;margin-top:2px}
+.fm b{display:block;font-size:16.5px}
+.fm small{display:block;color:var(--muted);font-size:14.5px;line-height:1.45}
+.fm[aria-pressed="true"]{background:var(--selbg);border-color:var(--selline)}
+.fm[aria-pressed="true"] .tk{background:var(--btn);border-color:var(--btn);color:#fff}
+.grp{border:1px solid var(--line);border-radius:24px;overflow:hidden;margin-bottom:16px;background:var(--card)}
+.gt{font-size:13.5px;font-weight:700;color:var(--muted);margin:18px 6px 8px;letter-spacing:.2px}
+.r2{display:flex;align-items:center;gap:12px;padding:13px 16px;border-bottom:1px solid var(--line)}
+.r2:last-child{border-bottom:0}
+.r2 .ri{width:36px;height:36px;border-radius:11px;background:var(--selbg);color:var(--brand);display:grid;place-items:center;flex:none}
+.r2>span{flex:1;font-weight:600;line-height:1.35}
+.r2 small{display:block;font-weight:400;color:var(--muted);font-size:13.5px}
+.sw{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);padding:0;position:relative;overflow:hidden;flex:none}
+.sw i{position:absolute;right:-2px;bottom:-2px;width:19px;height:19px;border-radius:100% 0 0 0}
+.sw[aria-pressed="true"]{border-color:var(--ink);box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--ink)}
+.sws{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}
+.r2 .fld{width:52%;padding:10px 12px;font-size:16px}
+.ph{display:flex;align-items:center;gap:10px;border:0;background:var(--field);border-radius:14px;padding:6px 14px 6px 6px;font-weight:600}
+.ph b{width:34px;height:34px;border-radius:10px;background:var(--card);display:grid;place-items:center;overflow:hidden;color:var(--muted)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.tg{appearance:none;-webkit-appearance:none;width:52px;height:32px;border-radius:999px;background:var(--line);position:relative;border:0;flex:none;transition:background .2s;cursor:pointer}
+.tg:after{content:"";position:absolute;top:3px;left:3px;width:26px;height:26px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:transform .2s}
+.tg:checked{background:var(--btn)}.tg:checked:after{transform:translateX(20px)}
+.dng{background:none;border:0;color:var(--red);font-weight:700;padding:0}
+.about{text-align:center;color:var(--muted);font-size:13.5px;margin:10px 10px 6px}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:6px 8px calc(8px + env(safe-area-inset-bottom,0px))}
+.nav .in{display:grid;grid-template-columns:1fr 1fr 1.25fr 1fr 1fr;align-items:end}
+.nav button{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0 2px;color:var(--muted);font-size:12.5px;font-weight:600}
+.nav button[aria-current="page"]{color:var(--brand)}
+.nav .mid{position:relative;color:var(--brand)}
+.nav .mid span.o{width:60px;height:60px;border-radius:50%;margin-top:-30px;background:linear-gradient(135deg,#0f6b4f,#3f9d7b 55%,#e2c26a);display:grid;place-items:center;color:#fff;box-shadow:0 6px 18px rgba(15,107,79,.4);border:4px solid var(--card)}
+.nav .mid svg{width:28px;height:28px}
+#toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translate(-50%,10px);background:#14231c;color:#fff;padding:10px 18px;border-radius:999px;font-size:15px;opacity:0;pointer-events:none;transition:.25s;z-index:70;max-width:92%;text-align:center}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#modal{position:fixed;inset:0;z-index:60;background:rgba(5,18,12,.75);display:flex;align-items:flex-end;justify-content:center}
+.sheet{width:100%;max-width:480px;max-height:96%;overflow-y:auto;background:var(--card);color:var(--ink);border-radius:28px 28px 0 0;padding:18px 18px calc(16px + env(safe-area-inset-bottom,0px))}
+.sheet h3{margin:0 0 2px;font-size:20px}
+.sheet p{margin:0 0 12px;color:var(--muted);font-size:14.5px}
+#mp{display:block;width:100%;max-width:320px;height:auto;margin:0 auto 14px;border-radius:14px;box-shadow:0 8px 24px rgba(0,0,0,.3);-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
+.close{width:100%;margin-top:8px;background:none;border:0;color:var(--muted);padding:10px;text-decoration:underline}
+@media (prefers-reduced-motion:reduce){.ring .b,.fold svg,.dt svg,.tg,.tg:after,#toast{transition:none}.cp.pop{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="ic-logo" viewBox="0 0 48 48"><rect width="48" height="48" rx="11" fill="#0f6b4f"/><circle cx="24" cy="24" r="17.5" fill="none" stroke="#f2d98a" stroke-width="2"/><circle cx="24" cy="24" r="14.5" fill="none" stroke="#f2d98a" stroke-width=".8" opacity=".6"/><circle cx="24" cy="19.5" r="3.8" fill="#e8444f"/><path d="M16 36l6.2-10M32 36l-6.2-10M20.2 29.5h7.6M18.2 33h11.6" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/></symbol>
+  <symbol id="ic-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  <symbol id="ic-train" viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="14" rx="3.5"/><path d="M5 11h14M8.5 21l1.8-3.5M15.5 21l-1.8-3.5"/><circle cx="9" cy="14.2" r=".9"/><circle cx="15" cy="14.2" r=".9"/></symbol>
+  <symbol id="ic-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.6 8.4l-2 5.2-5.2 2 2-5.2z"/></symbol>
+  <symbol id="ic-stamp" viewBox="0 0 24 24"><path d="M10 3.5h4a1 1 0 0 1 1 1v4c0 .8.4 1.3 1 1.9l1 1V13H7v-1.6l1-1c.6-.6 1-1.1 1-1.9v-4a1 1 0 0 1 1-1zM5 16.5h14M6.5 20h11"/></symbol>
+  <symbol id="ic-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.3"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></symbol>
+  <symbol id="ic-srch" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="ic-chev" viewBox="0 0 24 24"><path d="M9 5.5l6.5 6.5L9 18.5"/></symbol>
+  <symbol id="ic-dl" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19.5h14"/></symbol>
+  <symbol id="ic-shr" viewBox="0 0 24 24"><circle cx="6" cy="12" r="2.3"/><circle cx="17.5" cy="6" r="2.3"/><circle cx="17.5" cy="18" r="2.3"/><path d="M8.1 11l7.3-4M8.1 13l7.3 4"/></symbol>
+  <symbol id="ic-cp" viewBox="0 0 24 24"><rect x="9" y="9" width="10.5" height="10.5" rx="2"/><path d="M15 9V6.5A1.5 1.5 0 0 0 13.5 5h-7A1.5 1.5 0 0 0 5 6.5v7A1.5 1.5 0 0 0 6.5 15H9"/></symbol>
+  <symbol id="ic-usr" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.5"/><path d="M5 20c.8-4 3.6-5.8 7-5.8s6.2 1.8 7 5.8"/></symbol>
+  <symbol id="ic-cam" viewBox="0 0 24 24"><path d="M4 8.5h3l1.5-2h7L17 8.5h3a1 1 0 0 1 1 1V18a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.3"/></symbol>
+  <symbol id="ic-pal" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.2 0 1.8-.8 1.8-1.7 0-1.5-1.3-1.6-1.3-2.8 0-.9.7-1.5 1.6-1.5H16a4.5 4.5 0 0 0 4.5-4.5C20.5 6.2 16.7 3.5 12 3.5z"/><circle cx="7.6" cy="11" r=".9"/><circle cx="10" cy="7.6" r=".9"/><circle cx="14.4" cy="7.6" r=".9"/></symbol>
+  <symbol id="ic-ink" viewBox="0 0 24 24"><path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0C6 9.7 12 3.5 12 3.5z"/></symbol>
+  <symbol id="ic-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+  <symbol id="ic-trash" viewBox="0 0 24 24"><path d="M5 7h14M10 7V4.5h4V7M7 7l.8 12.5h8.4L17 7M10.3 11v5M13.7 11v5"/></symbol>
+  <symbol id="ic-tag" viewBox="0 0 24 24"><path d="M3.5 12.2V4.5h7.7l9 9a1.4 1.4 0 0 1 0 2l-5.7 5.7a1.4 1.4 0 0 1-2 0z"/><circle cx="8" cy="9" r="1.2"/></symbol>
+</defs></svg>
+
+<header class="top"><div class="in"><div class="hrow">
+  <svg class="lg" aria-hidden="true"><use href="#ic-logo"/></svg>
+  <div class="ht"><b>My Rail Passport</b><span>আমার রেল-ভ্রমণের পাসপোর্ট</span></div>
+  <div class="ring" aria-hidden="true"><svg viewBox="0 0 46 46"><circle class="a" cx="23" cy="23" r="18"/><circle class="b" id="rg" cx="23" cy="23" r="18" stroke-dasharray="113.1" stroke-dashoffset="113.1"/></svg><em id="rgT">০%</em></div>
+</div></div></header>
+
+<main class="wrap"><div class="in">
+
+  <section id="p0">
+    <h1><em>রেলে</em> ঘুরুন,<br>সিল জমান</h1>
+    <div class="pill">একদম ফ্রি · লগইন লাগে না</div>
+    <p class="lead">যেসব স্টেশনে গিয়েছেন বেছে নিন, আপনার পাসপোর্টের পাতায় একটা একটা করে সিল পড়বে।</p>
+    <div class="stats">
+      <div class="st3"><svg class="i"><use href="#ic-pin"/></svg><b id="s1">০</b><span>স্টেশন</span></div>
+      <div class="st3"><svg class="i"><use href="#ic-train"/></svg><b id="s2">০</b><span>ট্রেন</span></div>
+      <div class="st3"><svg class="i"><use href="#ic-compass"/></svg><b id="s3">০</b><span>অভিজ্ঞতা</span></div>
+    </div>
+    <div class="rankbar"><svg class="i"><use href="#ic-stamp"/></svg><div><span id="rankT">যাত্রা এখনো শুরু হয়নি</span><small id="rankS">প্রথম স্টেশনটা বেছে নিন</small></div></div>
+    <img id="pv" alt="আপনার My Rail Passport-এর পাতা">
+    <button class="big" id="start" type="button"><svg class="i"><use href="#ic-pin"/></svg>স্টেশন বাছাই শুরু করুন</button>
+    <button class="big" id="dl" type="button" hidden><svg class="i"><use href="#ic-dl"/></svg>পাসপোর্ট ডাউনলোড করুন</button>
+    <div class="two" id="twoB" hidden>
+      <button type="button" id="shr"><svg class="i"><use href="#ic-shr"/></svg>শেয়ার</button>
+      <button type="button" id="cpy"><svg class="i"><use href="#ic-cp"/></svg>লেখা কপি</button>
+    </div>
+  </section>
+
+  <section id="p1" hidden>
+    <div class="card">
+      <div class="ch"><span class="ic"><svg class="i"><use href="#ic-pin"/></svg></span><h2>যেসব স্টেশনে গিয়েছি</h2><span class="cnt" id="cnt">০ / ০</span></div>
+      <p class="hint">ছোট-বড় সব স্টেশন বিভাগ ধরে সাজানো আছে।</p>
+      <div class="sb"><svg class="i"><use href="#ic-srch"/></svg><input id="q" class="fld" type="search" placeholder="স্টেশন খুঁজুন, যেমন: পাহাড়তলী" autocomplete="off" aria-label="স্টেশন খুঁজুন"></div>
+      <div id="rtBox"><button type="button" class="fold" id="rtF" aria-expanded="false"><span>রুট ধরে দ্রুত বাছাই</span><svg class="i"><use href="#ic-chev"/></svg></button><div class="rts" id="routes" hidden></div></div>
+      <div id="list"></div>
+      <button class="lnk" id="clr" type="button">সব স্টেশন মুছুন</button>
+    </div>
+    <div class="card">
+      <div class="ch"><span class="ic"><svg class="i"><use href="#ic-tag"/></svg></span><h2>তালিকায় নেই?</h2></div>
+      <p class="hint">কোনো স্টেশন বাদ পড়লে বা নামে ভুল থাকলে নিজে যোগ করুন।</p>
+      <div class="add"><input id="addN" class="fld" type="text" maxlength="30" placeholder="স্টেশনের নাম" autocomplete="off" aria-label="নতুন স্টেশনের নাম"><button type="button" id="addB">যোগ করুন</button></div>
+    </div>
+  </section>
+
+  <section id="p2" hidden>
+    <div class="card">
+      <div class="ch"><span class="ic"><svg class="i"><use href="#ic-train"/></svg></span><h2>যে ট্রেনে চড়েছি</h2><span class="cnt" id="cntT">০ / ০</span></div>
+      <p class="hint">যেগুলোতে উঠেছেন সেগুলো বেছে নিন।</p>
+      <div class="chs" id="trains"></div>
+    </div>
+  </section>
+
+  <section id="p3" hidden>
+    <div class="card">
+      <div class="ch"><span class="ic"><svg class="i"><use href="#ic-compass"/></svg></span><h2>এলাকার বিখ্যাত জিনিস</h2><span class="cnt" id="cntF">০ / ০</span></div>
+      <p class="hint">ঘুরে বা চেখে দেখেছেন এমন জায়গা টিক দিন। আপনার বাছাই করা স্টেশনের এলাকাগুলো উপরে দেখাবে।</p>
+      <div id="fam"></div>
+    </div>
+  </section>
+
+  <section id="p4" hidden>
+    <div class="gt">আমার পাসপোর্ট</div>
+    <div class="grp">
+      <div class="r2"><span class="ri"><svg class="i"><use href="#ic-usr"/></svg></span><span>নাম</span><input id="name" class="fld" type="text" maxlength="28" placeholder="ঐচ্ছিক" autocomplete="off" aria-label="আপনার নাম"></div>
+      <div class="r2"><span class="ri"><svg class="i"><use href="#ic-cam"/></svg></span><span>প্রোফাইল ছবি</span><button class="ph" id="phB" type="button"><b id="phT"><svg class="i"><use href="#ic-usr"/></svg></b><em id="phL" style="font-style:normal">যোগ করুন</em></button></div>
+    </div>
+    <input id="phF" type="file" accept="image/*" hidden>
+    <div class="gt">কাগজ ও সিল</div>
+    <div class="grp">
+      <div class="r2"><span class="ri"><svg class="i"><use href="#ic-pal"/></svg></span><span>পাসপোর্টের কাগজ</span><div class="sws" id="themes"></div></div>
+      <div class="r2"><span class="ri"><svg class="i"><use href="#ic-ink"/></svg></span><span>সিলের কালি</span><div class="sws" id="inks"></div></div>
+      <div class="r2"><span class="ri"><svg class="i"><use href="#ic-cal"/></svg></span><span>সিলে তারিখ দেখান<small>যেদিন স্টেশন বেছেছেন সেই তারিখ</small></span><input type="checkbox" class="tg" id="showD" checked aria-label="সিলে তারিখ দেখান"></div>
+    </div>
+    <div class="gt">তথ্য</div>
+    <div class="grp">
+      <div class="r2"><span class="ri"><svg class="i"><use href="#ic-trash"/></svg></span><span>সব মুছে নতুন করে শুরু<small>স্টেশন, ট্রেন, নাম সব মুছে যাবে</small></span><button class="dng" id="reset" type="button">মুছুন</button></div>
+    </div>
+    <p class="about">My Rail Passport · আপনার সব তথ্য শুধু আপনার ফোনেই থাকে।<br>কোথাও পাঠানো হয় না।</p>
+  </section>
+</div></main>
+
+<nav class="nav" id="nav" aria-label="মূল মেনু"><div class="in">
+  <button type="button" data-p="p1"><svg class="i"><use href="#ic-pin"/></svg>স্টেশন</button>
+  <button type="button" data-p="p2"><svg class="i"><use href="#ic-train"/></svg>ট্রেন</button>
+  <button type="button" class="mid" data-p="p0" aria-current="page"><span class="o"><svg class="i"><use href="#ic-stamp"/></svg></span>পাসপোর্ট</button>
+  <button type="button" data-p="p3"><svg class="i"><use href="#ic-compass"/></svg>ঘুরে দেখুন</button>
+  <button type="button" data-p="p4"><svg class="i"><use href="#ic-gear"/></svg>সেটিংস</button>
+</div></nav>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<div id="modal" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-label="আপনার পাসপোর্ট">
+    <h3>আপনার পাসপোর্ট তৈরি</h3>
+    <p>ছবিটার ওপর আঙুল চেপে ধরুন, তারপর “ছবি সেভ করুন” বা “Download image” চাপুন।</p>
+    <img id="mp" alt="আপনার পাসপোর্ট">
+    <div class="two">
+      <button type="button" id="mShr"><svg class="i"><use href="#ic-shr"/></svg>শেয়ার</button>
+      <button type="button" id="mCpy"><svg class="i"><use href="#ic-cp"/></svg>লেখা কপি</button>
+    </div>
+    <button type="button" class="close" id="closeM">বন্ধ করুন</button>
+  </div>
+</div>
+
+<script>
+(function(){
+function S(s){return s.split("|")}
+  var DATA=[
+  ["ঢাকা",S("কমলাপুর|ঢাকা বিমানবন্দর|ক্যান্টনমেন্ট|বনানী|তেজগাঁও|গেন্ডারিয়া|নারায়ণগঞ্জ|ফতুল্লা|মাওয়া|জাজিরা|টঙ্গী জংশন|জয়দেবপুর জংশন|ভাওয়াল গাজীপুর|আড়িখোলা|কালিয়াকৈর হাইটেক সিটি|ধীরাশ্রম|ইজ্জতপুর|কাওরাইদ|মৌচাক|নলচাটা|পূবাইল|রাজেন্দ্রপুর|সাতখামাইর|শ্রীপুর|টাঙ্গাইল|ইব্রাহিমাবাদ|হেমনগর|করটিয়া|মির্জাপুর|মোহেরা|ভাগা|চুলকাটি বাজার|দিগরাজ|কাটাখালী|ঘোড়াশাল|ঘোড়াশাল ফ্ল্যাগ|আমিরগঞ্জ|দৌলতকান্দি|জিনারদী|হাটুভাঙ্গা|খানাবাড়ী|মেথিকান্দা|নরসিংদী|শ্রীনিধি|ভূঁইয়াপুর|ভৈরব বাজার জংশন|বাজিতপুর|ছয়সূতি|গোচিহাটা|হালিমপুর মোকসুদ|যশোদল|কালিকাপ্রসাদ|কিশোরগঞ্জ|কুলিয়ারচর|মানিকখালী|নীলগঞ্জ|সরারচর|ভাঙ্গা জংশন|ভাঙ্গা|অম্বিকাপুর|আমিরাবাদ|বাখুন্ডা|বোয়ালমারী|ফরিদপুর কলেজ|ফরিদপুর|ঘোড়াখালী|কামারখালী ঘাট|মধুখালী জংশন|নগরকান্দা|পুখুরিয়া|সাহস্রাইল|সাতৈর|তালমা|বাইসপুর|কাশিয়ানী জংশন|মুকসুদপুর|গোপালগঞ্জ|গোবরা|চন্দ্রদিঘলিয়া|চাপতা|ভাটিয়াপাড়া ঘাট|ছোট বাহিরবাগ|বরাশী|মহেশপুর|রাজবাড়ী|গোয়ালন্দ ঘাট|পাংশা|কালুখালী জংশন|আড়কান্দি|খানখানাপুর|গোয়ালন্দ বাজার|নলিয়াগ্রাম|পাচুরিয়া জংশন|বসন্তপুর|বাহারপুর|বেলগাছি|মাছপাড়া|রামদিয়া|সূর্যনগর")],
+  ["চট্টগ্রাম",S("চট্টগ্রাম|চট্টগ্রাম বিশ্ববিদ্যালয়|ফৌজদারহাট|কৈবল্যধাম|কুমিরা|মস্তান নগর|মিরসরাই|নিজামপুর কলেজ|পাহাড়তলী|সীতাকুণ্ড|ভাটিয়ারী|বাড়বকুণ্ড|বারৈয়াঢালা|বড়তাকিয়া|চিনকি আস্তানা|দোহাজারী|চন্দনাইশ|সাতকানিয়া|লোহাগাড়া|চকরিয়া|ডুলাহাজারা|ঈদগাঁও|রামু|কক্সবাজার|আখাউড়া জংশন|ব্রাহ্মণবাড়িয়া|গঙ্গাসাগর|ইমামবাড়ী|কসবা|মন্দবাগ|মনতলা|পাগাচাং|শালদাণ্ডি|শশীদল|তালশহর|ভাটশালা|আশুগঞ্জ|বালাখাল|চাঁদপুর|চাঁদপুর কোর্ট|চিতোষী রোড|হাজীগঞ্জ|মেহের|মধু রোড|মাইশাদি|শাহরাস্তি|শাহতলী|ওয়ারুক|আলিশ্বর|বিপুলাসার|কুমিল্লা|দৌলতগঞ্জ|গুণবতী|হাসানপুর|খিলা|লাকসাম জংশন|লালমাই|ময়নামতি|নাঙ্গলকোট|নাউটি|নাথেরপেটুয়া|রাজাপুর|সদর রসুলপুর|আনন্দপুর|বান্দুয়া দৌলতপুর|বিলোনিয়া|চিথলিয়া|ফাজিলপুর|ফেনী|ফুলগাজী|কালীদহ|মুহুরীগঞ্জ|মুন্সিরহাট|পরশুরাম|পীরবক্সহাট|সরশদী|বজরা|চৌমুহনী|হরিনারায়ণপুর|মাইজদী কোর্ট|মাইজদী|নোয়াখালী|সোনাইমুড়ী")],
+  ["সিলেট",S("সিলেট|শায়েস্তাগঞ্জ|লস্করপুর|রশিদপুর|সাটিয়াজুড়ী|শাহজীবাজার|সুতাং|সুতাং বাজার|বারকুলা|বড়মচাল|চকাপন|কুলাউড়া জংশন|মনু|লংলা|শমশেরনগর|সাতগাঁও|শ্রীমঙ্গল|মৌলভীবাজার|তিলগাঁও|ভানুগাছ|আফজালাবাদ|ছাতক বাজার|ফেঞ্চুগঞ্জ|খাজাঞ্চীগাঁও|মাইজগাঁও|মোগলাবাজার|শতপুর হল্ট|ভাটেরা|হবিগঞ্জ বাজার|হবিগঞ্জ কোর্ট|ধুলিয়াখাল|পাইকপাড়া|চুনারুঘাট|বল্লা")],
+  ["খুলনা",S("খুলনা|শিরোমণি|দৌলতপুর|দৌলতপুর কলেজ|ফুলতলা|মোহাম্মদ নগর|আড়ংঘাটা|বেজেরডাঙ্গা|মোংলা|যশোর জংশন|যশোর ক্যান্টনমেন্ট|জামদিয়া|ঝিকরগাছা|মেহেরুল্লাহনগর|নাভারণ|নওয়াপাড়া|গদখালী|পদ্মবিলা জংশন|সিঙ্গিয়া জংশন|তালতলা|রূপদিয়া|বড়বাজার|কোটচাঁদপুর|মোবারকগঞ্জ|সফদারপুর|সুন্দরপুর|বেনাপোল|চেঙ্গুটিয়া|চুয়াডাঙ্গা|আলমডাঙ্গা|আনসারবাড়িয়া|দর্শনা জংশন|দর্শনা হল্ট|গাইঘাট|জয়রামপুর|মোমিনপুর|মুন্সিগঞ্জ|উথলী|কুষ্টিয়া|কুষ্টিয়া কোর্ট|মিরপুর|ভেড়ামারা|চড়াইকোল|হালসা|জগতি|খোকসা|কুমারখালী|পোড়াদহ জংশন|মাগুরা|ঝিনাইদহ|সাতক্ষীরা|বাগআঁচড়া|কলারোয়া|ভোমরা|পারুলিয়া|কালিগঞ্জ|শ্যামনগর|মুন্সিগঞ্জ ফরেস্ট অফিস|দামুড়হুদা|কার্পাসডাঙ্গা|মুজিবনগর|মনাখালী|মেহেরপুর")],
+  ["রাজশাহী",S("রাজশাহী|রাজশাহী কোর্ট|রাজশাহী বিশ্ববিদ্যালয়|সারদা রোড|শিতলাই|আড়ানী|বেলপুকুর|চব্বিশনগর|হরিয়ান|কাকনহাট|ললিতনগর|নন্দনগাছি|আবদুলপুর জংশন|আজিমনগর|বাসুদেবপুর|বীরকুৎসা|ঈশ্বরদী জংশন|ঈশ্বরদী বাইপাস|লোকমানপুর|মাঝগ্রাম জংশন|মধুনগর|মালঞ্চী|নাটোর|নলডাঙ্গা হাট|ইয়াসিনপুর|বাঁধেরহাট|ভাঙ্গুড়া|বড়াল ব্রিজ|চাটমোহর|দাশুড়িয়া|ঢালারচর|দিলপাশার|ডুবলিয়া|গফুরাবাদ|গুয়াখোড়া|কাশীনাথপুর|মূলাডুলি|পাবনা|পাকশী|রাঘবপুর|রূপপুর|সাঁথিয়া রাজাপুর|শরৎনগর|তাঁতিবন্ধ|তেবুনিয়া|আলতাফনগর|বগুড়া|চাটিয়ান গ্রাম|গাবতলী|হেলালীরহাট|কাহালু|নশরতপুর|পাঁচপীর মাজার|সান্তাহার জংশন|সোনাতলা|সুখানপুকুর|সৈয়দ আহমদ কলেজ|তালোড়া|ভেলুরপাড়া|আমনুরা জংশন|আমনুরা বাইপাস|গোলাবাড়ী|নাচোল|নিজামপুর|চাঁপাইনবাবগঞ্জ|রহনপুর|আহসানগঞ্জ|আত্রাই|রাণীনগর|সাহাগোলা|সিরাজগঞ্জ বাজার|সিরাজগঞ্জ ঘাট|উল্লাপাড়া|বাহিরগোলা|বঙ্গবন্ধু সেতু পশ্চিম|জামতৈল|কালিয়া হরিপুর|লাহিড়ী মোহনপুর|রায়পুর|শহীদ এম. মনসুর আলী|শোলপ|চান্দাইকোনা|রায়গঞ্জ|ছোনকা|শেরপুর|আড়িয়া বাজার|রানীরহাট")],
+  ["রংপুর",S("রংপুর|কাউনিয়া|পীরগাছা|শ্যামপুর|মীরবাগ|চৌধুরানী|বদরগঞ্জ|অন্নদানগর|আউলিয়াগঞ্জ|সৈয়দপুর|নীলফামারী|নীলফামারী কলেজ|ডোমার|চিলাহাটি|দারোয়ানী|খয়রাতনগর|মির্জাগঞ্জ|তরুণবাড়ী|লালমনিরহাট|মোগলহাট|আদিতমারী|আলাউদ্দিননগর|বাউরা|ভোটমারী|বড়খাতা|বুড়িমারী|হাতীবান্ধা|কাকিনা|মহেন্দ্রনগর|নামুড়ীহাট|পাটগ্রাম|রইশবাগ|শহীদ বুরহাননগর|তিস্তা|তুষভান্ডার|কুড়িগ্রাম|পুরাতন কুড়িগ্রাম|চিলমারী|বালাবাড়ী|পাঁচপীর|রাজারহাট|রমনা বাজার|সিঙ্গার ডাবরী হাট|তোগরাইহাট|উলিপুর|পার্বতীপুর জংশন|দিনাজপুর|বাজনাহার|ভবানীপুর|বিলাইচণ্ডী|বীরামপুর|বিরল|চিরিরবন্দর|ডাঙ্গাপাড়া|ফুলবাড়ী|হিলি|কাঞ্চন|কাউগাঁও|খোলাহাটি|মোল্লাপাড়া|মঙ্গলপুর|মন্মথপুর|সেতাবগঞ্জ|সুলতানপুর স্কুল")],
+  ["ময়মনসিংহ",S("ময়মনসিংহ জংশন|ময়মনসিংহ রোড|কৃষি বিশ্ববিদ্যালয়|আহমদবাড়ী|আঠারবাড়ী|আউলিয়ানগর|বেগুনবাড়ী|বিদ্যাগঞ্জ|বিস্কা|বকাইনগর|ধলা|ফাতেমানগর|গফরগাঁও|গৌরীপুর জংশন|ঈশ্বরগঞ্জ|নান্দাইল|নিমতলী বাজার|মশাখালী|মশিউরনগর|মুশুলী|সোহাগী|শম্ভুগঞ্জ|সুতিয়াখালী|শ্যামগঞ্জ জংশন|জামালপুর টাউন জংশন|জামালপুর কোর্ট|বাহাদুরাবাদ ঘাট|বাউসী|বয়রা|দেওয়ানগঞ্জ বাজার|দুরমুট|ইসলামপুর বাজার|জাফরশাহী|জগন্নাথগঞ্জ বাজার|জগন্নাথগঞ্জ ঘাট|কেন্দুয়া বাজার|মেলান্দহ বাজার|মোশাররফগঞ্জ|নন্দিনা|নুরুন্দি|পিয়ারপুর|শহীদ নগর|সরিষাবাড়ী|তারাকান্দি|নেত্রকোনা|নেত্রকোনা কোর্ট|বাংলা|বারহাট্টা|চল্লিশানগর|হিরণপুর|জলসুখা|জারিয়া ঝাঞ্জাইল|মোহনগঞ্জ|অতিতপুর|পূর্বধলা|ঠাকুরাকোনা")]
+  ];
+  var ROUTES=[
+    ["ঢাকা – চট্টগ্রাম",S("কমলাপুর|টঙ্গী জংশন|ঘোড়াশাল|নরসিংদী|ভৈরব বাজার জংশন|আশুগঞ্জ|ব্রাহ্মণবাড়িয়া|আখাউড়া জংশন|গঙ্গাসাগর|কসবা|কুমিল্লা|লাকসাম জংশন|ফেনী|মিরসরাই|সীতাকুণ্ড|ফৌজদারহাট|পাহাড়তলী|চট্টগ্রাম")],
+    ["ঢাকা – সিলেট",S("কমলাপুর|টঙ্গী জংশন|ঘোড়াশাল|নরসিংদী|ভৈরব বাজার জংশন|আশুগঞ্জ|ব্রাহ্মণবাড়িয়া|আখাউড়া জংশন|শায়েস্তাগঞ্জ|শ্রীমঙ্গল|কুলাউড়া জংশন|ফেঞ্চুগঞ্জ|সিলেট")],
+    ["ঢাকা – রাজশাহী",S("কমলাপুর|টঙ্গী জংশন|জয়দেবপুর জংশন|টাঙ্গাইল|বঙ্গবন্ধু সেতু পশ্চিম|সিরাজগঞ্জ বাজার|উল্লাপাড়া|ঈশ্বরদী জংশন|নাটোর|আবদুলপুর জংশন|রাজশাহী")],
+    ["ঢাকা – খুলনা (পদ্মা সেতু)",S("কমলাপুর|মাওয়া|জাজিরা|ভাঙ্গা জংশন|যশোর জংশন|নওয়াপাড়া|ফুলতলা|খুলনা")],
+    ["ঢাকা – ময়মনসিংহ",S("কমলাপুর|ঢাকা বিমানবন্দর|টঙ্গী জংশন|জয়দেবপুর জংশন|কাওরাইদ|গফরগাঁও|ময়মনসিংহ জংশন")],
+    ["চট্টগ্রাম – কক্সবাজার",S("চট্টগ্রাম|দোহাজারী|চন্দনাইশ|সাতকানিয়া|লোহাগাড়া|চকরিয়া|ডুলাহাজারা|ঈদগাঁও|রামু|কক্সবাজার")]
+  ];
+  
+  var TR=S("সুবর্ণ এক্সপ্রেস|মহানগর প্রভাতী|মহানগর গোধূলী|তূর্ণা নিশিথা|পারাবত এক্সপ্রেস|জয়ন্তিকা এক্সপ্রেস|উদয়ন এক্সপ্রেস|উপবন এক্সপ্রেস|জালালাবাদ এক্সপ্রেস|পাহাড়িকা এক্সপ্রেস|কালনী এক্সপ্রেস|মেঘনা এক্সপ্রেস|চট্টলা এক্সপ্রেস|কর্ণফুলী এক্সপ্রেস|সুরমা মেইল|মৈত্রী এক্সপ্রেস|বন্ধন এক্সপ্রেস|মিতালী এক্সপ্রেস|সিল্কসিটি এক্সপ্রেস|পদ্মা এক্সপ্রেস|বনলতা এক্সপ্রেস|ধূমকেতু এক্সপ্রেস|রংপুর এক্সপ্রেস|দ্রুতযান এক্সপ্রেস|একতা এক্সপ্রেস|পঞ্চগড় এক্সপ্রেস|লালমনি এক্সপ্রেস|নীলসাগর এক্সপ্রেস|বুড়িমারী এক্সপ্রেস|কুড়িগ্রাম এক্সপ্রেস|রূপসা এক্সপ্রেস|সুন্দরবন এক্সপ্রেস|চিত্রা এক্সপ্রেস|কপোতাক্ষ এক্সপ্রেস|বেনাপোল এক্সপ্রেস|ব্রহ্মপুত্র এক্সপ্রেস|যমুনা এক্সপ্রেস|দোলনচাঁপা এক্সপ্রেস|অগ্নিবীণা এক্সপ্রেস|তিতাস এক্সপ্রেস|এগারসিন্দুর প্রভাতী|এগারসিন্দুর গোধূলী|হাওর এক্সপ্রেস|মোহনগঞ্জ এক্সপ্রেস|মধুমতি এক্সপ্রেস|সোনার বাংলা এক্সপ্রেস|বিজয় এক্সপ্রেস|কমিউটার ট্রেন|লোকাল ট্রেন|মেইল ট্রেন");
+  var FAM=[
+    ["কমলাপুর","ঢাকা: পুরান ঢাকার বাকরখানি, লালবাগ কেল্লা"],
+    ["টাঙ্গাইল","টাঙ্গাইলের শাড়ি ও পোড়াবাড়ীর চমচম"],
+    ["জয়দেবপুর জংশন","ভাওয়াল জাতীয় উদ্যান"],
+    ["নরসিংদী","বাবুরহাটের কাপড়ের বাজার"],
+    ["ভৈরব বাজার জংশন","ভৈরব সেতু ও মেঘনা নদী"],
+    ["কিশোরগঞ্জ","নিকলী হাওর"],
+    ["মাওয়া","পদ্মা সেতু ও মাওয়ার ইলিশ"],
+    ["জাজিরা","পদ্মা সেতুর ওপারের পদ্মার পাড়"],
+    ["গোপালগঞ্জ","টুঙ্গিপাড়ায় বঙ্গবন্ধুর সমাধি কমপ্লেক্স"],
+    ["ফরিদপুর","ফরিদপুরের খেজুরের গুড়"],
+    ["রাজবাড়ী","গোয়ালন্দ ঘাট ও পদ্মার ইলিশ"],
+    ["চট্টগ্রাম","পতেঙ্গা সমুদ্রসৈকত ও চট্টগ্রামের মেজবান"],
+    ["সীতাকুণ্ড","চন্দ্রনাথ পাহাড় ও ইকোপার্ক"],
+    ["মিরসরাই","খৈয়াছড়া ঝরনা"],
+    ["কক্সবাজার","কক্সবাজার সমুদ্রসৈকত ও লাবণী পয়েন্ট"],
+    ["রামু","রামুর বৌদ্ধ বিহার"],
+    ["চকরিয়া","চকরিয়া সুন্দরবন (ম্যানগ্রোভ বন)"],
+    ["কুমিল্লা","কুমিল্লার রসমালাই"],
+    ["ময়নামতি","ময়নামতি শালবন বিহার"],
+    ["ব্রাহ্মণবাড়িয়া","তিতাস নদী ও ওস্তাদ আলাউদ্দিন খাঁর শহর"],
+    ["চাঁদপুর","মেঘনার ইলিশ ও মোহনা"],
+    ["আখাউড়া জংশন","বাংলাদেশ–ভারত রেল সীমান্ত"],
+    ["সিলেট","জাফলং ও শাহজালালের মাজার"],
+    ["শ্রীমঙ্গল","চা-বাগান ও সাত রঙের চা, লাউয়াছড়া জাতীয় উদ্যান"],
+    ["মৌলভীবাজার","হাকালুকি হাওর"],
+    ["কুলাউড়া জংশন","মাধবকুণ্ড জলপ্রপাত"],
+    ["হবিগঞ্জ বাজার","সাতছড়ি জাতীয় উদ্যান"],
+    ["ছাতক বাজার","ছাতকের সিমেন্ট কারখানা ও সুরমা নদী"],
+    ["খুলনা","সুন্দরবনের প্রবেশদ্বার"],
+    ["মোংলা","মোংলা বন্দর ও করমজল বনভূমি"],
+    ["যশোর জংশন","যশোরের খেজুরের রস ও পিঠা"],
+    ["কুষ্টিয়া","লালন শাহের মাজার ও তিলের খাজা"],
+    ["বেনাপোল","বেনাপোল স্থলবন্দর"],
+    ["মুজিবনগর","মুজিবনগর স্মৃতিসৌধ"],
+    ["সাতক্ষীরা","সুন্দরবনের কাছের জেলা সাতক্ষীরা"],
+    ["রাজশাহী","রাজশাহীর আম ও রেশম, পদ্মার পাড়"],
+    ["নাটোর","নাটোরের কাঁচাগোল্লা ও রাজবাড়ী"],
+    ["বগুড়া","বগুড়ার দই ও মহাস্থানগড়"],
+    ["চাঁপাইনবাবগঞ্জ","চাঁপাইনবাবগঞ্জের আম"],
+    ["রূপপুর","রূপপুর পারমাণবিক বিদ্যুৎকেন্দ্র"],
+    ["পাকশী","হার্ডিঞ্জ ব্রিজ"],
+    ["বঙ্গবন্ধু সেতু পশ্চিম","যমুনা নদী ও বঙ্গবন্ধু সেতু"],
+    ["সান্তাহার জংশন","উত্তরবঙ্গের ব্যস্ত রেল জংশন"],
+    ["রংপুর","তাজহাট জমিদার বাড়ি"],
+    ["সৈয়দপুর","সৈয়দপুর রেল কারখানা"],
+    ["পার্বতীপুর জংশন","দেশের বড় রেল জংশন"],
+    ["দিনাজপুর","কান্তজিউ মন্দির ও দিনাজপুরের লিচু"],
+    ["বুড়িমারী","বুড়িমারী স্থলবন্দর"],
+    ["তিস্তা","তিস্তা ব্যারেজ"],
+    ["চিলাহাটি","বাংলাদেশ–ভারত রেল সীমান্ত"],
+    ["হিলি","হিলি স্থলবন্দর"],
+    ["কুড়িগ্রাম","ধরলা নদীর পাড়"],
+    ["ময়মনসিংহ জংশন","জয়নুল আবেদিন সংগ্রহশালা ও মুক্তাগাছার মণ্ডা"],
+    ["কৃষি বিশ্ববিদ্যালয়","বাংলাদেশ কৃষি বিশ্ববিদ্যালয়ের ক্যাম্পাস"],
+    ["নেত্রকোনা","দুর্গাপুর-বিরিশিরির গারো ও হাজং সংস্কৃতি"],
+    ["মোহনগঞ্জ","হাওর অঞ্চলের রেলপথ"],
+    ["শম্ভুগঞ্জ","ব্রহ্মপুত্র নদের পাড়"]
+  ];
+
+  var PAPERS=[
+    {bg:"#f6efdf",ink:"#17332a",mut:"#6f7a6c",line:"#d6cbae",pat:"15,107,79",inks:["#0f6b4f","#c8323f","#2b4c9b"]},
+    {bg:"#e6f3ec",ink:"#12352a",mut:"#5f7a6c",line:"#bcd8c9",pat:"15,107,79",inks:["#0f6b4f","#c8323f","#2b4c9b"]},
+    {bg:"#e8f0fa",ink:"#13294a",mut:"#62758f",line:"#bfd0e6",pat:"43,76,155",inks:["#2b4c9b","#c8323f","#0f6b4f"]},
+    {bg:"#fbece7",ink:"#3a1c17",mut:"#8d6b63",line:"#ebcfc6",pat:"200,50,63",inks:["#c8323f","#0f6b4f","#2b4c9b"]},
+    {bg:"#12251e",ink:"#eef4ef",mut:"#93b0a3",line:"#2a4a3f",pat:"217,180,95",inks:["#7fdcae","#ff8a8f","#f2c14e"]}
+  ];
+  var INKN=["মিশ্র","সবুজ","লাল","নীল"];
+  var MON=["জানু","ফেব্রু","মার্চ","এপ্রিল","মে","জুন","জুলাই","আগস্ট","সেপ্টে","অক্টো","নভে","ডিসে"];
+  var all=[];DATA.forEach(function(d){d[1].forEach(function(s){if(all.indexOf(s)<0)all.push(s)})});
+  var KEY="my-rail-passport-v6",state={name:"",sel:[],dt:{},custom:[],trains:[],fam:[],theme:0,ink:0,showD:true},openD=0,q="",photo=null,cv=null,dlc=null,lastTog="";
+  try{var raw=localStorage.getItem(KEY);if(raw){var p=JSON.parse(raw);if(p){state.name=String(p.name||"");["sel","custom","trains","fam"].forEach(function(k){state[k]=Array.isArray(p[k])?p[k]:[]});state.dt=p.dt&&typeof p.dt==="object"?p.dt:{};state.theme=+p.theme||0;state.ink=+p.ink||0;state.showD=p.showD!==false}}}catch(e){}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}}
+  try{if(window.claude&&window.claude.use){window.claude.use("downloads").then(function(d){dlc=d},function(){})}}catch(e){}
+  var BN="০১২৩৪৫৬৭৮৯";
+  function b(x){return String(x).replace(/\d/g,function(d){return BN.charAt(+d)})}
+  function $(id){return document.getElementById(id)}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+  function has(s){return state.sel.indexOf(s)>-1}
+  function total(){return all.length+state.custom.length}
+  function today(){var d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate()}
+  function fmt(s){var a=String(s||"").split("-");if(a.length<3)return"";return b(a[2])+" "+MON[(+a[1]-1)%12]+" "+b(a[0])}
+  function add(s){if(!has(s)){state.sel.push(s);state.dt[s]=today()}}
+  function tog(arr,v){var i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else arr.push(v)}
+  function togSt(s){if(has(s))state.sel.splice(state.sel.indexOf(s),1);else{add(s);lastTog=s}}
+  function rank(c){
+    if(c<1)return["যাত্রা এখনো শুরু হয়নি","প্রথম স্টেশনটা বেছে নিন"];
+    if(c>=total())return["পুরো দেশ ঘোরা যাত্রী","সব স্টেশনে সিল পড়েছে!"];
+    if(c>=120)return["রেল পর্যটক","সত্যিকারের রেলপ্রেমী"];
+    if(c>=50)return["রেলপ্রেমী","পাসপোর্টের পাতা ভরে উঠছে"];
+    if(c>=15)return["নিয়মিত যাত্রী","দারুণ এগোচ্ছেন"];
+    if(c>=3)return["নতুন যাত্রী","সিল জমতে শুরু করেছে"];
+    return["প্রথম টিকিট কাটা হলো","চালিয়ে যান"];
+  }
+  var tt;function toast(m){var t=$("toast");t.textContent=m;t.className="on";clearTimeout(tt);tt=setTimeout(function(){t.className=""},3000)}
+
+  function renderRoutes(){
+    var h="";
+    ROUTES.forEach(function(r,i){
+      var on=r[1].every(has),k=r[1].filter(has).length;
+      h+='<button type="button" class="rt" data-i="'+i+'" aria-pressed="'+on+'"><span>'+r[0]+'</span><small>'+(on?"সব বাছাই":b(k)+"/"+b(r[1].length)+"টি")+'</small></button>';
+    });
+    $("routes").innerHTML=h;
+  }
+  function divs(){var d=DATA.map(function(x,i){return[x[0]+" বিভাগ",x[1],i]});if(state.custom.length)d.push(["আমার যোগ করা স্টেশন",state.custom,99]);return d}
+  var CH='<svg class="i"><use href="#ic-chev"/></svg>';
+  function renderList(){
+    var h="";
+    divs().forEach(function(d){
+      var list=q?d[1].filter(function(s){return s.indexOf(q)>-1}):d[1];
+      if(q&&!list.length)return;
+      var open=q?true:openD===d[2],k=d[1].filter(has).length,allOn=list.length&&list.every(has);
+      h+='<div class="dv"><div class="dh"><button type="button" class="dt" data-d="'+d[2]+'" aria-expanded="'+open+'">'+CH+'<b>'+d[0]+'</b><span>'+b(k)+'/'+b(d[1].length)+'</span></button>'+(open?'<button type="button" class="sa" data-a="'+d[2]+'">'+(allOn?"সব বাদ":"সব বাছাই")+'</button>':'')+'</div>';
+      if(open){h+='<div class="chs">';list.forEach(function(s){h+='<button type="button" class="cp'+(s===lastTog&&has(s)?" pop":"")+'" data-s="'+esc(s)+'" aria-pressed="'+has(s)+'">'+esc(s)+'</button>'});h+='</div>'}
+      h+='</div>';
+    });
+    if(!h)h='<p class="msg">এই নামে কোনো স্টেশন পাওয়া যায়নি। নিচে “তালিকায় নেই?” অংশে নিজে যোগ করতে পারেন।</p>';
+    $("list").innerHTML=h;lastTog="";
+    $("rtBox").hidden=!!q;
+  }
+  function renderTrains(){
+    var h="";TR.forEach(function(t){h+='<button type="button" class="cp" data-t="'+esc(t)+'" aria-pressed="'+(state.trains.indexOf(t)>-1)+'">'+esc(t)+'</button>'});
+    $("trains").innerHTML=h;
+  }
+  function renderFam(){
+    var on=[],off=[];FAM.forEach(function(f){(has(f[0])?on:off).push(f)});
+    function row(f){var p=state.fam.indexOf(f[0])>-1;return'<button type="button" class="fm" data-f="'+esc(f[0])+'" aria-pressed="'+p+'"><span class="tk" aria-hidden="true">✓</span><span><b>'+esc(f[0])+'</b><small>'+esc(f[1])+'</small></span></button>'}
+    var h="";
+    if(on.length){h+='<div class="sec">আপনার বাছাই করা স্টেশনের এলাকায়</div>';on.forEach(function(f){h+=row(f)})}
+    h+='<div class="sec">'+(on.length?"আরও বিখ্যাত জায়গা ও খাবার":"বিখ্যাত জায়গা ও খাবার")+'</div>';
+    off.forEach(function(f){h+=row(f)});
+    $("fam").innerHTML=h;
+  }
+  function renderTop(){
+    var n=state.sel.length,tot=total(),pr=tot?n/tot:0,rk=rank(n);
+    $("cnt").textContent=b(n)+" / "+b(tot);
+    $("cntT").textContent=b(state.trains.length)+" / "+b(TR.length);
+    $("cntF").textContent=b(state.fam.length)+" / "+b(FAM.length);
+    $("s1").textContent=b(n);$("s2").textContent=b(state.trains.length);$("s3").textContent=b(state.fam.length);
+    $("rg").style.strokeDashoffset=String(113.1*(1-pr));
+    $("rgT").textContent=b(Math.round(pr*100))+"%";
+    $("rankT").textContent=rk[0];$("rankS").textContent=rk[1];
+    $("start").hidden=n>0;$("dl").hidden=!n;$("twoB").hidden=!n;
+  }
+  function renderSettings(){
+    var h="";PAPERS.forEach(function(t,i){h+='<button type="button" class="sw" data-t="'+i+'" aria-label="কাগজ '+b(i+1)+'" aria-pressed="'+(state.theme===i)+'" style="background:'+t.bg+'"><i style="background:'+t.inks[0]+'"></i></button>'});
+    $("themes").innerHTML=h;
+    var cs=["linear-gradient(135deg,#0f6b4f 33%,#c8323f 33% 66%,#2b4c9b 66%)","#0f6b4f","#c8323f","#2b4c9b"];h="";
+    cs.forEach(function(c,i){h+='<button type="button" class="sw" data-k="'+i+'" aria-label="কালি '+INKN[i]+'" aria-pressed="'+(state.ink===i)+'" style="background:'+c+'"></button>'});
+    $("inks").innerHTML=h;
+  }
+  function refreshAll(){renderRoutes();renderList();renderFam();renderTop();sched()}
+
+  /* ---------- navigation & events ---------- */
+  function go(id){
+    ["p0","p1","p2","p3","p4"].forEach(function(x){$(x).hidden=x!==id});
+    Array.prototype.forEach.call($("nav").querySelectorAll("button"),function(x){if(x.getAttribute("data-p")===id)x.setAttribute("aria-current","page");else x.removeAttribute("aria-current")});
+    window.scrollTo(0,0);if(id==="p0")sched();
+  }
+  $("nav").addEventListener("click",function(e){var t=e.target.closest("button");if(t)go(t.getAttribute("data-p"))});
+  $("start").addEventListener("click",function(){go("p1")});
+  $("rtF").addEventListener("click",function(){var o=$("rtF").getAttribute("aria-expanded")==="true";$("rtF").setAttribute("aria-expanded",!o);$("routes").hidden=o});
+  $("routes").addEventListener("click",function(e){
+    var t=e.target.closest(".rt");if(!t)return;
+    var r=ROUTES[+t.getAttribute("data-i")][1];
+    if(r.every(has))state.sel=state.sel.filter(function(s){return r.indexOf(s)<0});
+    else r.forEach(add);
+    save();refreshAll();
+  });
+  $("list").addEventListener("click",function(e){
+    var t=e.target.closest("button");if(!t)return;
+    if(t.hasAttribute("data-s")){togSt(t.getAttribute("data-s"));save();refreshAll();return}
+    if(t.hasAttribute("data-d")){var id=+t.getAttribute("data-d");openD=(openD===id&&!q)?-1:id;renderList();return}
+    if(t.hasAttribute("data-a")){
+      var d=divs().filter(function(x){return String(x[2])===t.getAttribute("data-a")})[0];if(!d)return;
+      var list=q?d[1].filter(function(x){return x.indexOf(q)>-1}):d[1];
+      if(list.every(has))state.sel=state.sel.filter(function(x){return list.indexOf(x)<0});
+      else list.forEach(add);
+      save();refreshAll();
+    }
+  });
+  $("trains").addEventListener("click",function(e){var t=e.target.closest(".cp");if(!t)return;tog(state.trains,t.getAttribute("data-t"));save();renderTrains();renderTop();sched()});
+  $("fam").addEventListener("click",function(e){var t=e.target.closest(".fm");if(!t)return;tog(state.fam,t.getAttribute("data-f"));save();renderFam();renderTop();sched()});
+  $("q").addEventListener("input",function(e){q=e.target.value.trim();renderList()});
+  $("clr").addEventListener("click",function(){if(!state.sel.length)return;state.sel=[];save();refreshAll();toast("সব স্টেশন মুছে গেছে")});
+  function addStation(){
+    var v=$("addN").value.replace(/\s+/g," ").trim();
+    if(!v){toast("আগে স্টেশনের নাম লিখুন");return}
+    var ex=all.concat(state.custom).filter(function(s){return s===v})[0];
+    if(ex){add(ex);toast("এই স্টেশন তালিকায় আছে, বাছাই করে দিলাম")}
+    else{state.custom.push(v);add(v);openD=99;toast("“"+v+"” যোগ হয়েছে")}
+    $("addN").value="";q="";$("q").value="";save();refreshAll();
+  }
+  $("addB").addEventListener("click",addStation);
+  $("addN").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();addStation()}});
+  $("themes").addEventListener("click",function(e){var t=e.target.closest(".sw");if(!t)return;state.theme=+t.getAttribute("data-t");save();renderSettings();sched()});
+  $("inks").addEventListener("click",function(e){var t=e.target.closest(".sw");if(!t)return;state.ink=+t.getAttribute("data-k");save();renderSettings();sched()});
+  $("name").addEventListener("input",function(e){state.name=e.target.value;save();sched()});
+  $("showD").addEventListener("change",function(e){state.showD=e.target.checked;save();sched()});
+  var USR='<svg class="i"><use href="#ic-usr"/></svg>';
+  $("phB").addEventListener("click",function(){if(photo){photo=null;$("phT").innerHTML=USR;$("phL").textContent="যোগ করুন";sched();return}$("phF").click()});
+  $("phF").addEventListener("change",function(e){
+    var f=e.target.files&&e.target.files[0];if(!f)return;
+    var r=new FileReader();
+    r.onload=function(){var im=new Image();im.onload=function(){photo=im;$("phT").innerHTML='<img alt="" src="'+r.result+'">';$("phL").textContent="সরান";sched()};im.onerror=function(){toast("ছবিটা খোলা যায়নি")};im.src=r.result};
+    r.readAsDataURL(f);e.target.value="";
+  });
+  var rt,armed=false;
+  $("reset").addEventListener("click",function(){
+    var bt=$("reset");
+    if(!armed){armed=true;bt.textContent="আবার চাপুন";rt=setTimeout(function(){armed=false;bt.textContent="মুছুন"},3500);return}
+    clearTimeout(rt);armed=false;bt.textContent="মুছুন";
+    state={name:"",sel:[],dt:{},custom:[],trains:[],fam:[],theme:0,ink:0,showD:true};photo=null;save();
+    $("name").value="";$("showD").checked=true;$("phT").innerHTML=USR;$("phL").textContent="যোগ করুন";
+    openD=0;renderSettings();renderTrains();refreshAll();toast("নতুন করে শুরু হলো");
+  });
+
+  /* ---------- the passport page (canvas) ---------- */
+  function rr(x,a,c,w,h,r){x.beginPath();x.moveTo(a+r,c);x.arcTo(a+w,c,a+w,c+h,r);x.arcTo(a+w,c+h,a,c+h,r);x.arcTo(a,c+h,a,c,r);x.arcTo(a,c,a+w,c,r);x.closePath()}
+  function fit(x,t,max,start,f){var s=start;for(;s>16;s-=2){x.font=f(s);if(x.measureText(t).width<=max)break}return s}
+  function hs(s){var h=2166136261;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);h=Math.imul(h,16777619)>>>0}return h>>>0}
+  function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;var t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+  function logo(x,ox,oy,sz){
+    var k=sz/48;x.save();x.translate(ox,oy);x.scale(k,k);
+    x.fillStyle="#0f6b4f";rr(x,0,0,48,48,11);x.fill();
+    x.strokeStyle="#f2d98a";x.lineWidth=2;x.beginPath();x.arc(24,24,17.5,0,7);x.stroke();
+    x.globalAlpha=.6;x.lineWidth=.8;x.beginPath();x.arc(24,24,14.5,0,7);x.stroke();x.globalAlpha=1;
+    x.fillStyle="#e8444f";x.beginPath();x.arc(24,19.5,3.8,0,7);x.fill();
+    x.strokeStyle="#fff";x.lineWidth=2;x.lineCap="round";x.beginPath();x.moveTo(16,36);x.lineTo(22.2,26);x.moveTo(32,36);x.lineTo(25.8,26);x.moveTo(20.2,29.5);x.lineTo(27.8,29.5);x.moveTo(18.2,33);x.lineTo(29.8,33);x.stroke();
+    x.restore();
+  }
+  function stamp(x,P,cx,cy,name,date,shape,col,rot,rand,SS){
+    x.save();x.translate(cx,cy);x.rotate(rot*Math.PI/180);x.globalAlpha=.9;x.strokeStyle=col;x.fillStyle=col;x.lineCap="round";
+    var tw;
+    if(shape===0){x.lineWidth=6;x.beginPath();x.arc(0,0,98,0,7);x.stroke();x.lineWidth=2.2;x.beginPath();x.arc(0,0,86,0,7);x.stroke();tw=138}
+    else if(shape===1){x.lineWidth=6;rr(x,-112,-76,224,152,26);x.stroke();x.lineWidth=2.2;rr(x,-100,-64,200,128,18);x.stroke();tw=176}
+    else{x.lineWidth=6;x.beginPath();x.ellipse(0,0,112,80,0,0,7);x.stroke();x.lineWidth=2.2;x.beginPath();x.ellipse(0,0,100,68,0,0,7);x.stroke();tw=158}
+    x.textAlign="center";x.textBaseline="alphabetic";
+    x.font="600 19px "+SS;x.fillText("রেল স্টেশন",0,-34);
+    x.lineWidth=2;x.beginPath();x.moveTo(-34,-24);x.lineTo(34,-24);x.stroke();
+    var f=fit(x,name,tw,38,function(z){return"800 "+z+"px "+SS});x.font="800 "+f+"px "+SS;x.fillText(name,0,Math.round(f*.28)+2);
+    if(date){x.lineWidth=2;x.beginPath();x.moveTo(-34,30);x.lineTo(34,30);x.stroke();x.font="600 20px "+SS;x.fillText(date,0,56)}
+    x.restore();
+    // worn-ink speckles
+    x.save();x.fillStyle=P.bg;x.globalAlpha=.85;
+    for(var i=0;i<46;i++){var a=rand()*6.283,r=Math.sqrt(rand())*106;x.beginPath();x.arc(cx+Math.cos(a)*r*1.1,cy+Math.sin(a)*r*.8,.7+rand()*1.9,0,7);x.fill()}
+    x.restore();
+  }
+  function drawCard(){
+    var P=PAPERS[state.theme]||PAPERS[0],W=1080,H=1350,L=96,c=document.createElement("canvas");c.width=W;c.height=H;
+    var x=c.getContext("2d"),SS='"Anek Bangla","Hind Siliguri","Noto Sans Bengali","Bangla Sangam MN",sans-serif',SF='"DM Serif Display",Georgia,serif',n=state.sel.length,tot=total();
+    x.fillStyle=P.bg;x.fillRect(0,0,W,H);
+    // guilloche watermark
+    x.save();x.translate(W/2,790);x.lineWidth=1.6;x.strokeStyle="rgba("+P.pat+",.075)";
+    for(var k=0;k<36;k++){x.save();x.rotate(k*Math.PI/36);x.beginPath();x.ellipse(0,0,430,170,0,0,7);x.stroke();x.restore()}
+    x.restore();
+    // frame
+    x.strokeStyle=P.line;x.lineWidth=3;rr(x,38,38,W-76,H-76,34);x.stroke();x.lineWidth=1.4;rr(x,54,54,W-108,H-108,26);x.stroke();
+    // header
+    logo(x,L,92,76);x.textAlign="left";x.textBaseline="alphabetic";
+    x.fillStyle=P.ink;x.font="400 54px "+SF;x.fillText("My Rail Passport",L+96,142);
+    x.fillStyle=P.mut;x.font="500 25px "+SS;x.fillText("আমার রেল-ভ্রমণের পাসপোর্ট",L+98,182);
+    x.strokeStyle=P.line;x.lineWidth=2;x.beginPath();x.moveTo(L,216);x.lineTo(W-L,216);x.stroke();
+    // holder
+    x.strokeStyle=P.line;x.lineWidth=3;rr(x,L,246,190,232,20);x.stroke();
+    if(photo){x.save();rr(x,L+4,250,182,224,17);x.clip();var sc=Math.max(182/photo.width,224/photo.height),w2=photo.width*sc,h2=photo.height*sc;x.drawImage(photo,L+95-w2/2,362-h2/2,w2,h2);x.restore()}
+    else{x.globalAlpha=.35;x.fillStyle=P.mut;x.beginPath();x.arc(L+95,330,36,0,7);x.fill();x.beginPath();x.moveTo(L+30,458);x.quadraticCurveTo(L+95,360,L+160,458);x.fill();x.globalAlpha=1}
+    var hx=L+226,hw=W-L-hx,rk=rank(n)[0];
+    x.fillStyle=P.mut;x.font="500 23px "+SS;x.fillText("যাত্রীর নাম",hx,282);
+    var nm=state.name||"একজন রেলযাত্রী",ns=fit(x,nm,hw,52,function(z){return"800 "+z+"px "+SS});x.font="800 "+ns+"px "+SS;x.fillStyle=P.ink;x.fillText(nm,hx,338);
+    x.fillStyle=P.mut;x.font="500 23px "+SS;x.fillText("পদবি",hx,386);
+    x.fillStyle=P.ink;x.font="700 34px "+SS;x.fillText(rk,hx,426);
+    x.fillStyle=P.mut;x.font="500 26px "+SS;x.fillText(b(n)+" স্টেশন · "+b(state.trains.length)+" ট্রেন · "+b(state.fam.length)+" অভিজ্ঞতা",hx,468);
+    // stamp page
+    x.fillStyle=P.mut;x.font="600 24px "+SS;x.fillText("ভ্রমণের সিল",L,540);
+    x.strokeStyle=P.line;x.lineWidth=2;x.beginPath();x.moveTo(L+160,532);x.lineTo(W-L,532);x.stroke();
+    var cw=(W-2*L)/4,ch=196,gy=560,last=state.sel.slice(-12).reverse(),i;
+    x.save();x.setLineDash([9,9]);x.strokeStyle=P.line;x.lineWidth=2.5;
+    for(i=last.length;i<12;i++){var ex=L+cw*(i%4)+cw/2,ey=gy+ch*Math.floor(i/4)+ch/2;x.beginPath();x.arc(ex,ey,82,0,7);x.stroke()}
+    x.restore();
+    for(i=0;i<last.length;i++){
+      var nmS=last[i],rand=rng(hs(nmS)),sx=L+cw*(i%4)+cw/2+(rand()-.5)*22,sy=gy+ch*Math.floor(i/4)+ch/2+(rand()-.5)*18;
+      var col=state.ink?P.inks[state.ink-1]:P.inks[hs(nmS)%3];
+      stamp(x,P,sx,sy,nmS,state.showD?fmt(state.dt[nmS]):"",hs(nmS+"s")%3,col,(rand()-.5)*30,rand,SS);
+    }
+    if(!n){x.textAlign="center";x.fillStyle=P.mut;x.font="600 30px "+SS;x.fillText("এখনো কোনো সিল পড়েনি",W/2,gy+ch+20);x.font="500 24px "+SS;x.fillText("স্টেশন বাছুন, পাতায় সিল জমবে",W/2,gy+ch+60);x.textAlign="left"}
+    // footer
+    var pct=Math.round((tot?n/tot:0)*1000)/10,dk=DATA.filter(function(d){return d[1].some(has)}).length;
+    x.textAlign="left";x.fillStyle=P.ink;x.font="700 29px "+SS;x.fillText(b(pct)+"% স্টেশন ছোঁয়া হয়েছে",L,1204);
+    x.textAlign="right";x.fillStyle=P.mut;x.font="500 26px "+SS;x.fillText(b(dk)+"/"+b(DATA.length)+" বিভাগ ঘোরা"+(n>12?" · +"+b(n-12)+" সিল":""),W-L,1204);
+    x.textAlign="left";x.fillStyle=P.mut;x.globalAlpha=.75;x.font="500 23px monospace";
+    var serial=100000+hs(state.name+"|"+n)%900000;
+    x.fillText(("P<BGD<MYRAILPASSPORT<<RP"+serial+"<<ST"+n+"<<<<<<<<<<<<<<<<").slice(0,52),L,1252);x.globalAlpha=1;
+    return c;
+  }
+  var pt;function sched(){clearTimeout(pt);pt=setTimeout(refresh,160)}
+  function refresh(){try{cv=drawCard();$("pv").src=cv.toDataURL("image/jpeg",.92)}catch(e){}}
+  function fontsReady(cb){
+    var d=false;function go2(){if(!d){d=true;cb()}}
+    try{if(document.fonts&&document.fonts.load){Promise.all([document.fonts.load('800 40px "Anek Bangla"',"আমার রেলযাত্রা ০১২৩৪৫"),document.fonts.load('400 40px "DM Serif Display"',"My Rail Passport")]).then(go2,go2);setTimeout(go2,1800);return}}catch(e){}
+    go2();
+  }
+
+  /* ---------- download / share ---------- */
+  function txt(){return"🚆 "+(state.name?state.name+" ":"আমি ")+"My Rail Passport-এ "+b(state.sel.length)+"টি স্টেশনের সিল জমিয়েছি, "+b(state.trains.length)+"টি ট্রেনে চড়েছি! আপনার পাসপোর্টে কয়টা সিল?"}
+  function getBlob(cb){try{var c=drawCard();c.toBlob(function(bl){cb(bl,c)},"image/png")}catch(e){cb(null,null)}}
+  function showSheet(c){try{$("mp").src=(c||drawCard()).toDataURL("image/png")}catch(e){}$("modal").hidden=false}
+  function download(){
+    if(!state.sel.length){toast("আগে অন্তত একটা স্টেশন বাছুন");return}
+    getBlob(function(bl,c){
+      if(dlc&&bl){dlc.save({filename:"my-rail-passport.png",data:bl}).then(function(){toast("পাসপোর্ট সেভ হয়েছে")},function(err){if(err&&err.code==="declined")return;showSheet(c)});return}
+      if(bl){try{var u=URL.createObjectURL(bl),a=document.createElement("a");a.href=u;a.download="my-rail-passport.png";document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(u)},4000)}catch(e){}}
+      showSheet(c);
+    });
+  }
+  $("dl").addEventListener("click",download);
+  function closeM(){$("modal").hidden=true}
+  $("closeM").addEventListener("click",closeM);
+  $("modal").addEventListener("click",function(e){if(e.target===this)closeM()});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape")closeM()});
+  function copy(t){
+    function ok(){toast("কপি হয়েছে, ফেসবুকে পেস্ট করুন")}
+    function fb(){
+      var a=document.createElement("textarea");a.value=t;a.setAttribute("readonly","");a.style.cssText="position:fixed;top:0;left:0;opacity:0";
+      document.body.appendChild(a);a.select();a.setSelectionRange(0,t.length);
+      var r=false;try{r=document.execCommand("copy")}catch(e){}
+      document.body.removeChild(a);if(r)ok();else toast("কপি হয়নি, নিজে লিখে নিন");
+    }
+    try{if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fb);return}}catch(e){}
+    fb();
+  }
+  $("cpy").addEventListener("click",function(){copy(txt())});
+  $("mCpy").addEventListener("click",function(){copy(txt())});
+  function share(){
+    if(!state.sel.length){toast("আগে অন্তত একটা স্টেশন বাছুন");return}
+    getBlob(function(bl,c){
+      try{
+        if(bl&&navigator.canShare&&typeof File==="function"){
+          var f=new File([bl],"my-rail-passport.png",{type:"image/png"});
+          if(navigator.canShare({files:[f]})){navigator.share({files:[f],text:txt()}).catch(function(){});return}
+        }
+      }catch(e){}
+      showSheet(c);toast("ছবি চেপে ধরে সেভ করে ফেসবুকে দিন");
+    });
+  }
+  $("shr").addEventListener("click",share);$("mShr").addEventListener("click",share);
+
+  $("name").value=state.name;$("showD").checked=state.showD;
+  renderSettings();renderTrains();refreshAll();fontsReady(refresh);
+})();
+</script>
+</body>
+</html>
